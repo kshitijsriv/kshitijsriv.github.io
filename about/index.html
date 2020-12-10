@@ -24,12 +24,12 @@
             
                 
                 
-                    <a class="nav-item nav-link" href="/about">About</a>
+                    <a class="nav-item nav-link" href="/resume">Resume</a>
                     
                         <span class="nav-item navbar-text mx-1">/</span>
                     
                 
-                    <a class="nav-item nav-link" href="/resume">Resume</a>
+                    <a class="nav-item nav-link" href="/blog">Blog</a>
                     
                         <span class="nav-item navbar-text mx-1">/</span>
                     
@@ -49,10 +49,38 @@
     <img src="avatar.jpg"/> 
 </figure>
 
-<p>Hi! I&rsquo;m Kshitij. I&rsquo;m working as a Research Assistant with <a href="http://faculty.iiitd.ac.in/~praveshb/" target="_blank">Dr Pravesh Biyani</a> at the <a href="https://chartr.in/" target="_blank">Mobility and Optimisation Lab</a> at IIIT-Delhi.</p>
+<p>Hi! I&rsquo;m Kshitij. I&rsquo;m working as a Research Assistant with <a href="http://faculty.iiitd.ac.in/~praveshb/" target="_blank">Dr Pravesh Biyani</a> at the <a href="https://chartr.in/" target="_blank">Mobility and Optimisation Lab</a> in <a href="https://www.iiitd.ac.in/" target="_blank">IIIT-Delhi</a>.</p>
+<p><strong>Currently looking for PhD positions in transportation data applications.</strong></p>
 <h2 id="research-interest">Research Interest</h2>
-<p>My work involves making use of transportation data, to help build applications which provide commuters with better and accurate information about their travel in public transit. I have been making additions to <a href="https://otd.delhi.gov.in" target="_blank">Open Transit Data, Delhi</a>, helping with GTFS data for public transit buses in Delhi for the platform. My work and projects can be viewed <a href="projects.html">here</a>.</p>
-<h2 id="projects">Projects</h2>
+<p>My work involves making use of transportation data, to help build applications which provide commuters with better and accurate information about their travel in public transit. I have been making additions to <a href="https://otd.delhi.gov.in" target="_blank">Open Transit Data, Delhi</a>, helping with GTFS data for public transit buses in Delhi for the platform.</p>
+<h2 id="work-projects">Work/ Projects</h2>
+<h3 id="gtfs-data-creation-current">GTFS data creation (<em>current</em>)</h3>
+<p>Creation of standardised GTFS data (static and real-time) for the two transit agencies in Delhi (DTC and DIMTS). The data is used for live bus tracking, trip planning, information system, e-ticketing.</p>
+<p>The work involves the following steps:</p>
+<p><strong>Data collection -&gt; Data cleaning -&gt; Handling missing data -&gt; GTFS creation -&gt; Validation</strong></p>
+<h3 id="route-assignment-current">Route Assignment (<em>current</em>)</h3>
+<p>Assigning routes to buses given their real-time GPS location. We are provided with the outshedding information for a bus, i.e., the route assigned to the bus on which it operates multiple to and fro trips (UP and DOWN direction). The problem is to identify:</p>
+<ul>
+<li>the direction of a trip</li>
+<li>when is a trip over</li>
+</ul>
+<p>Along with the problems stated above, many a times a bus doesn&rsquo;t send data for extended periods of time.</p>
+<h3 id="passenger-information-system-pishttpspischartrin"><a href="https://pis.chartr.in/" target="_blank">Passenger Information System (PIS)</a></h3>
+<p>A plug-n-play system which shows the ETA of upcoming buses. The framework is such that it can be used with any HD display with a simple computer (Raspberry-Pi) and put up at a bus stop. The system uses open transit data and calculates a simple ETA for upcoming buses. However, there is a provision to add more sophisticated ETA frameworks and we are working on developing one. I worked specifically on developing the backend for the application.</p>
+<h3 id="mybus-visualiserhttpsmybuschartrin"><a href="https://mybus.chartr.in/" target="_blank">MyBus Visualiser</a></h3>
+<p>A real-time dashboard to show live location of buses. A simple real-time website where one can view live location of all buses in Delhi from the two transit agencies. The webpage provide some basic filters like search using bus routes or bus number plates.</p>
+<h3 id="odd-even-policy-evaluation">Odd Even Policy Evaluation</h3>
+<p>We performed this study in 2019 to assess the impact of the Odd-Even road rationing policy. The policy was implemented in Delhi from 4-15 November, 2019. Using open transit data for public transport buses, we showed that the trip times consistently reduced by 15-20% across the city. The study was one of the two parts of my <a href="kshitij_thesis.pdf">master&#39;s thesis</a>. The work was also covered by major national newspapers. <a href="https://twitter.com/pravesh/status/1209013857655517185?s=20" target="_blank">Tweet</a></p>
+<h3 id="bus-breakdown-detection---impact-on-fuel-consumption">Bus Breakdown Detection - Impact on Fuel Consumption</h3>
+<p>Real-time bus breakdown detection using GPS data and its impact of the fuel consumption of vehicles. There are about 5-6k bus breakdowns each month. Many of these breakdowns cause traffic congestions. We analyse the two aspects of this problem:</p>
+<ul>
+<li>detection of a bus breakdown</li>
+<li>its impact on the fuel consumption of vehicles stuck in breakdown induced congestion</li>
+</ul>
+<p>For detecting breakdowns, we employed a simple clustering and thresholding technique to identify whether a breakdown occured or not. I really liked exploring this idea, however, the approach did report a considerable number of false positives. I believe, data from various sensors along with the GPS data can help solve this problem.</p>
+<p>Interestingly, we did observe a lot of blackspots (areas where buses don&rsquo;t send GPS data) and were able to plot it on a <a href="blackspot_map.png">map</a>. The light red areas are blackspots and the blue ones are good connectivity regions.</p>
+<p>Analysing the fuel consumption required employing a fuel consumption model for the class of vehicles affected (we used a model for cars). The final cost came out to be around <strong>eight crores</strong> per year in Delhi.</p>
+<p>This work is the other part of my <a href="kshitij_thesis.pdf">master&#39;s thesis</a>. The work was funded by the Petroleum Conservation Research Association (PCRA).</p>
 
 </div>
 
@@ -60,7 +88,7 @@
     <div id="footer">
         <hr>
         <div class="container text-center mb-2">
-            <a href="https://github.com/ojroques/hugo-researcher"><small>By Olivier Roques</small></a>
+            <a href="https://github.com/ojroques/hugo-researcher"><small>Researcher Theme By Olivier Roques</small></a>
         </div>
     </div>
 
