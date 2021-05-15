@@ -15,6 +15,7 @@ h1 {
   font-size: 50px; }
 
 h2 {
+  margin-top: 10px;
   font-size: 18px; }
 
 h3 {
@@ -63,7 +64,7 @@ ul {
     margin-top: 12mm; } }
 
 a {
-  color: #000;
+  color: #DC143C;
   display: inline-block;
   font-size: 13px;
   text-decoration: none; }
@@ -74,7 +75,7 @@ header {
   padding-bottom: 15px; }
   header .page-title {
     display: flex;
-    justify-content: space-between; }
+    justify-content: center; }
   header a + a {
     border-left: 2px solid #000;
     margin-left: 1rem;
