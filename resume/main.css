@@ -61,7 +61,9 @@ ul {
 
 @media print {
   .print-margin {
-    margin-top: 12mm; } }
+    margin-top: 12mm; }
+  .hidden-obj {
+    display: none; } }
 
 a {
   color: #DC143C;
