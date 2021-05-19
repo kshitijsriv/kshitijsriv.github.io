@@ -63,6 +63,8 @@ ul {
   .print-margin {
     margin-top: 12mm; }
   .hidden-obj {
+    display: none; }
+  #dark-mode-toggle {
     display: none; } }
 
 a {
@@ -110,3 +112,8 @@ header {
 @media print {
   html {
     zoom: 1.05; } }
+
+#dark-mode-toggle {
+  cursor: pointer; }
+  #dark-mode-toggle:hover {
+    text-decoration: none; }
