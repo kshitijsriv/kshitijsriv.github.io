@@ -13,6 +13,7 @@
 
     
     <link rel="stylesheet" href="/sass/researcher.min.css">
+    <link disabled id="dark-mode-theme" rel="stylesheet" href="/css/dark.css">
 
     
         <link rel="icon" type="image/ico" href="https://kshitijsriv.github.io/favicon.ico">
@@ -54,9 +55,38 @@
                 
             
         </div>
+        <a id="dark-mode-toggle" class="fa fa-moon"></a>
     </nav>
 </div>
 <hr>
+
+<script type="text/javascript">
+    var toggle = document.getElementById("dark-mode-toggle");
+    var darkTheme = document.getElementById("dark-mode-theme");
+
+    toggle.addEventListener("click", () => {
+        if (toggle.className === "fa fa-moon") {
+            setTheme("dark");
+        } else if (toggle.className === "fa fa-sun") {
+            setTheme("light");
+        }
+    });
+
+    var savedTheme = localStorage.getItem("dark-mode-storage") || "light";
+    setTheme(savedTheme);
+
+    function setTheme(mode) {
+        localStorage.setItem("dark-mode-storage", mode);
+        if (mode === "dark") {
+            darkTheme.disabled = false;
+            toggle.className = "fa fa-sun";
+        } else if (mode === "light") {
+            darkTheme.disabled = true;
+            toggle.className = "fa fa-moon";
+        }
+    }
+
+</script>
 <div id="content">
 <div class="container">
     <h1>404 Error</h1>
