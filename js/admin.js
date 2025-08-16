@@ -34,38 +34,6 @@ function compressImage(file, maxWidth = 1920, maxHeight = 1080, quality = 0.8) {
   });
 }
 
-// --- Dark Mode Toggle (same behavior as site) ---
-function initDarkMode() {
-  const darkModeToggle = document.getElementById('darkModeToggle');
-  const sunIcon = document.getElementById('sunIcon');
-  const moonIcon = document.getElementById('moonIcon');
-  const html = document.documentElement;
-
-  const setTheme = (isDark) => {
-    if (isDark) {
-      html.classList.add('dark');
-      sunIcon && sunIcon.classList.add('hidden');
-      moonIcon && moonIcon.classList.remove('hidden');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      html.classList.remove('dark');
-      sunIcon && sunIcon.classList.remove('hidden');
-      moonIcon && moonIcon.classList.add('hidden');
-      localStorage.setItem('theme', 'light');
-    }
-  };
-
-  const savedTheme = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if (savedTheme === 'dark' || (savedTheme === null && prefersDark)) setTheme(true);
-  else setTheme(false);
-
-  darkModeToggle && darkModeToggle.addEventListener('click', () => {
-    const isCurrentlyDark = html.classList.contains('dark');
-    setTheme(!isCurrentlyDark);
-  });
-}
-
 function show(el) { el && el.classList.remove('hidden'); }
 function hide(el) { el && el.classList.add('hidden'); }
 
@@ -599,7 +567,7 @@ async function deletePublication(publicationId) {
 
 // Init
 window.addEventListener('DOMContentLoaded', () => {
-  initDarkMode();
+  // Dark mode is handled by components.js
   initAuthUI();
   initUploadUI();
   

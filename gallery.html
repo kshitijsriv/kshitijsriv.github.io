@@ -39,6 +39,12 @@
 </head>
 <body class="bg-slate-50 dark:bg-[#121212] text-slate-800 dark:text-slate-200 transition-colors duration-500">
 
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"></div>
+        <div id="floatingShapes" class="absolute inset-0"></div>
+    </div>
+
     <!-- Header Container -->
     <div id="headerContainer"></div>
 
@@ -46,8 +52,8 @@
     <main class="container mx-auto px-6 py-12">
         <!-- Gallery Header -->
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold mb-4">Photo Gallery</h1>
-            <p class="text-xl text-slate-600 dark:text-slate-400">A collection of moments and places I've captured</p>
+            <h1 class="text-4xl font-bold mb-4 animate-slide-up">Photo Gallery</h1>
+            <p class="text-xl text-slate-600 dark:text-slate-400 animate-slide-up animation-delay-200">A collection of moments and places I've captured</p>
         </div>
 
         <!-- Photo Gallery Grid -->
@@ -74,6 +80,7 @@
     <!-- Footer Container -->
     <div id="footerContainer"></div>
 
+    <script src="js/funky-animations.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

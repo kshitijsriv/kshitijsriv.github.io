@@ -39,6 +39,12 @@
     <script src="js/components.js"></script>
 </head>
 <body class="bg-slate-50 dark:bg-[#121212] text-slate-800 dark:text-slate-200 transition-colors duration-500">
+
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"></div>
+        <div id="floatingShapes" class="absolute inset-0"></div>
+    </div>
     <!-- Header Container -->
     <div id="headerContainer"></div>
 
@@ -46,8 +52,8 @@
     <main class="container mx-auto px-6 py-12">
         <!-- Header -->
         <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Publications</h1>
-            <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Academic papers and research contributions in transportation systems and anomaly detection</p>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-slide-up">Publications</h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto animate-slide-up animation-delay-200">Academic papers and research contributions in transportation systems and anomaly detection</p>
         </div>
 
         <!-- Loading State -->
@@ -70,7 +76,7 @@
     </main>
 
     <!-- Publication Modal -->
-    <div id="publicationModal" class="modal">
+    <div id="publicationModal" class="modal hidden">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 id="modalTitle"></h2>
@@ -103,6 +109,7 @@
     <!-- Footer Container -->
     <div id="footerContainer"></div>
 
+    <script src="js/funky-animations.js"></script>
     <script src="js/main.js"></script>
     <script>
         // Publications functionality
@@ -212,19 +219,19 @@
                 codeLink.style.display = 'none';
             }
 
-            document.getElementById('publicationModal').style.display = 'block';
+            document.getElementById('publicationModal').classList.remove('hidden');
         }
 
         // Close modal
         document.getElementById('closeModal').onclick = function() {
-            document.getElementById('publicationModal').style.display = 'none';
+            document.getElementById('publicationModal').classList.add('hidden');
         }
 
         // Close modal when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('publicationModal');
             if (event.target == modal) {
-                modal.style.display = 'none';
+                modal.classList.add('hidden');
             }
         }
 

@@ -77,7 +77,7 @@ function isFirebaseReady() {
 
 // Initialize the website when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  initDarkMode();
+  // Don't initialize dark mode here - it's handled by components.js
   initMobileMenu();
   loadBlogPosts();
   loadPhotoGallery();

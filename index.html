@@ -43,6 +43,12 @@
 </head>
 <body class="bg-slate-50 dark:bg-[#121212] text-slate-800 dark:text-slate-200 transition-colors duration-500">
 
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"></div>
+        <div id="floatingShapes" class="absolute inset-0"></div>
+    </div>
+
 
     <!-- Header Container -->
     <div id="headerContainer"></div>
@@ -51,22 +57,36 @@
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-12">
 
-
         <!-- About Me Section -->
-        <section id="about" class="min-h-[80vh] flex items-center">
+        <section id="about" class="min-h-[80vh] flex items-center relative">
             <div class="grid md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-3">
-                    <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Hi, I'm Kshitij Srivastava</h1>
-                    <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-6">
-                        I'm a Data Engineer and a PhD student at IIIT Delhi specializing in Electronics & Communication. My work involves designing scalable data pipelines and real-time data integration for public transit systems. As a founding engineer at Chartr and Tech Lead at the Centre for Sustainable Mobility, I focus on using GTFS, Python, and cloud infrastructure to enhance urban transit for millions of commuters.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="cv_kshitij_srivastava.pdf" target="_blank" class="bg-sky-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-sky-600 transition-colors">View CV</a>
-                        <a href="mailto:kshitij@ksriv.in" class="bg-slate-200 dark:bg-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">Contact Me</a>
+                <div class="md:col-span-3 space-y-6">
+                    <div class="overflow-hidden">
+                        <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4 animate-slide-up">
+                            Hi, I'm <span class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">Kshitij Srivastava</span>
+                        </h1>
+                    </div>
+                    <div class="overflow-hidden">
+                        <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-6 animate-slide-up animation-delay-200">
+                            I'm a Data Engineer and a PhD student at IIIT Delhi specializing in Electronics & Communication. My work involves designing scalable data pipelines and real-time data integration for public transit systems. As a founding engineer at Chartr and Tech Lead at the Centre for Sustainable Mobility, I focus on using GTFS, Python, and cloud infrastructure to enhance urban transit for millions of commuters.
+                        </p>
+                    </div>
+                    <div class="flex space-x-4 animate-slide-up animation-delay-400">
+                        <a href="cv_kshitij_srivastava.pdf" target="_blank" class="group bg-gradient-to-r from-sky-500 to-indigo-500 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 relative overflow-hidden">
+                            <span class="relative z-10">View CV</span>
+                            <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </a>
+                        <a href="mailto:kshitij@ksriv.in" class="group bg-slate-200 dark:bg-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-300 dark:hover:bg-slate-700 hover:shadow-lg hover:scale-105 transition-all duration-300 border border-transparent hover:border-indigo-300 dark:hover:border-indigo-600">
+                            Contact Me
+                        </a>
                     </div>
                 </div>
-                <div class="md:col-span-2 flex justify-center">
-                    <img src="https://placehold.co/400x400/e2e8f0/334155?text=K.S." alt="Kshitij Srivastava" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-lg">
+                <div class="md:col-span-2 flex justify-center animate-slide-up animation-delay-600">
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 animate-pulse"></div>
+                        <img src="https://placehold.co/400x400/e2e8f0/334155?text=K.S." alt="Kshitij Srivastava" class="relative rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 border-4 border-white dark:border-slate-800">
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -78,6 +98,8 @@
     <div id="footerContainer"></div>
 
 
+    <script src="js/components.js"></script>
+    <script src="js/funky-animations.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

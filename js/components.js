@@ -13,18 +13,12 @@ function generateHeader(activePage = '') {
                 <a href="publications.html" class="${activePage === 'publications' ? 'text-sky-500 font-medium' : 'hover:text-sky-500 transition-colors'}">Publications</a>
                 <a href="cv_kshitij_srivastava.pdf" class="hover:text-sky-500 transition-colors" target="_blank">CV</a>
             </nav>
-            <div class="flex items-center space-x-4">
-                 <button id="darkModeToggle" class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
-                    <svg id="sunIcon" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg id="moonIcon" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            <div class="md:hidden">
+                <button id="mobileMenuButton" class="p-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
                 </button>
-                <div class="md:hidden">
-                    <button id="mobileMenuButton" class="p-2 rounded-md hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
             </div>
         </div>
         <!-- Mobile Menu -->
@@ -45,9 +39,9 @@ function generateHeader(activePage = '') {
 function generateFooter() {
     const currentYear = new Date().getFullYear();
     return `
-    <footer class="border-t border-slate-200 dark:border-slate-800">
-        <div class="container mx-auto px-6 py-8 text-center text-slate-500 dark:text-slate-400 space-y-2">
-            <p>&copy; ${currentYear} Kshitij Srivastava. All Rights Reserved.</p>
+    <footer class="py-8 bg-transparent">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-slate-600 dark:text-slate-400">&copy; ${currentYear} Kshitij Srivastava. All rights reserved.</p>
         </div>
     </footer>
     `;
