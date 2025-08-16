@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Kshitij Srivastava</title>
+    <meta name="description" content="Academic publications and research papers by Kshitij Srivastava">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Firebase SDKs -->
+    <script>
+      (function() {
+        try {
+          const saved = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (saved === null && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Tailwind config for class-based dark mode -->
+    <script>
+      tailwind = { config: { darkMode: 'class' } };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Firebase (optional for live content; safe to leave if not configured) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/components.js"></script>
+</head>
+<body class="bg-slate-50 dark:bg-[#121212] text-slate-800 dark:text-slate-200 transition-colors duration-500">
+    <!-- Header Container -->
+    <div id="headerContainer"></div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Publications</h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Academic papers and research contributions in transportation systems and anomaly detection</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingSpinner" class="flex flex-col items-center justify-center py-16">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-500"></div>
+            <p class="mt-4 text-slate-600 dark:text-slate-400">Loading publications...</p>
+        </div>
+
+        <!-- Publications Grid -->
+        <section id="publicationsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" style="display: none;">
+            <!-- Publications will be loaded here dynamically -->
+        </section>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="text-center py-16" style="display: none;">
+            <div class="text-6xl mb-4">📄</div>
+            <h3 class="text-xl font-semibold mb-2">No Publications Yet</h3>
+            <p class="text-slate-600 dark:text-slate-400">Academic publications will appear here once they are added.</p>
+        </div>
+    </main>
+
+    <!-- Publication Modal -->
+    <div id="publicationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="publication-details">
+                    <div class="publication-meta">
+                        <span id="modalAuthors" class="authors"></span>
+                        <span id="modalVenue" class="venue"></span>
+                        <span id="modalYear" class="year"></span>
+                    </div>
+                    <div id="modalAbstract" class="abstract"></div>
+                    <div class="publication-links">
+                        <a id="modalPdfLink" href="#" target="_blank" class="btn btn-primary" style="display: none;">
+                            📄 PDF
+                        </a>
+                        <a id="modalDoiLink" href="#" target="_blank" class="btn btn-secondary" style="display: none;">
+                            🔗 DOI
+                        </a>
+                        <a id="modalCodeLink" href="#" target="_blank" class="btn btn-secondary" style="display: none;">
+                            💻 Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footerContainer"></div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Publications functionality
+        let publications = [];
+
+        // Load publications from Firestore
+        async function loadPublications() {
+            try {
+                const db = firebase.firestore();
+                const snapshot = await db.collection('publications')
+                    .orderBy('year', 'desc')
+                    .orderBy('createdAt', 'desc')
+                    .get();
+
+                publications = [];
+                snapshot.forEach(doc => {
+                    publications.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                });
+
+                displayPublications();
+            } catch (error) {
+                console.error('Error loading publications:', error);
+                showEmptyState();
+            } finally {
+                hideLoadingSpinner();
+            }
+        }
+
+        // Display publications
+        function displayPublications() {
+            const grid = document.getElementById('publicationsGrid');
+            const emptyState = document.getElementById('emptyState');
+
+            if (publications.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            grid.innerHTML = publications.map(pub => `
+                <article class="bg-white dark:bg-[#1e1e1e] rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow" onclick="openPublicationModal('${pub.id}')">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-200 flex-1 mr-3">${pub.title}</h3>
+                        <span class="bg-sky-500 text-white px-2 py-1 rounded-full text-sm font-medium whitespace-nowrap">${pub.year}</span>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-400 text-sm mb-2">${pub.authors}</div>
+                    <div class="text-sky-600 dark:text-sky-400 text-sm font-medium mb-3">${pub.venue}</div>
+                    ${pub.abstract ? `<div class="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-3">${pub.abstract.substring(0, 150)}${pub.abstract.length > 150 ? '...' : ''}</div>` : ''}
+                    <div class="flex gap-2 flex-wrap">
+                        ${pub.pdfUrl ? '<span class="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-2 py-1 rounded text-xs">📄 PDF</span>' : ''}
+                        ${pub.doiUrl ? '<span class="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-2 py-1 rounded text-xs">🔗 DOI</span>' : ''}
+                        ${pub.codeUrl ? '<span class="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-2 py-1 rounded text-xs">💻 Code</span>' : ''}
+                    </div>
+                </article>
+            `).join('');
+
+            grid.style.display = 'grid';
+            emptyState.style.display = 'none';
+        }
+
+        // Show/hide states
+        function showEmptyState() {
+            document.getElementById('publicationsGrid').style.display = 'none';
+            document.getElementById('emptyState').style.display = 'block';
+        }
+
+        function hideLoadingSpinner() {
+            document.getElementById('loadingSpinner').style.display = 'none';
+        }
+
+        // Open publication modal
+        function openPublicationModal(publicationId) {
+            const publication = publications.find(p => p.id === publicationId);
+            if (!publication) return;
+
+            document.getElementById('modalTitle').textContent = publication.title;
+            document.getElementById('modalAuthors').textContent = publication.authors;
+            document.getElementById('modalVenue').textContent = publication.venue;
+            document.getElementById('modalYear').textContent = publication.year;
+            document.getElementById('modalAbstract').textContent = publication.abstract || 'No abstract available.';
+
+            // Handle links
+            const pdfLink = document.getElementById('modalPdfLink');
+            const doiLink = document.getElementById('modalDoiLink');
+            const codeLink = document.getElementById('modalCodeLink');
+
+            if (publication.pdfUrl) {
+                pdfLink.href = publication.pdfUrl;
+                pdfLink.style.display = 'inline-block';
+            } else {
+                pdfLink.style.display = 'none';
+            }
+
+            if (publication.doiUrl) {
+                doiLink.href = publication.doiUrl;
+                doiLink.style.display = 'inline-block';
+            } else {
+                doiLink.style.display = 'none';
+            }
+
+            if (publication.codeUrl) {
+                codeLink.href = publication.codeUrl;
+                codeLink.style.display = 'inline-block';
+            } else {
+                codeLink.style.display = 'none';
+            }
+
+            document.getElementById('publicationModal').style.display = 'block';
+        }
+
+        // Close modal
+        document.getElementById('closeModal').onclick = function() {
+            document.getElementById('publicationModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('publicationModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPublications();
+        });
+    </script>
+</body>
+</html>

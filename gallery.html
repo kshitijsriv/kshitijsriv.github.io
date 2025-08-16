@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Kshitij Srivastava</title>
+    <meta name="description" content="Photo gallery showcasing moments and places captured by Kshitij Srivastava">
+    
+    <!-- Pre-apply theme to avoid FOUC -->
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (savedTheme === 'dark' || (savedTheme === null && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Tailwind config for class-based dark mode -->
+    <script>
+      tailwind = { config: { darkMode: 'class' } };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Firebase (optional for live content; safe to leave if not configured) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/components.js"></script>
+</head>
+<body class="bg-slate-50 dark:bg-[#121212] text-slate-800 dark:text-slate-200 transition-colors duration-500">
+
+    <!-- Header Container -->
+    <div id="headerContainer"></div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Gallery Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4">Photo Gallery</h1>
+            <p class="text-xl text-slate-600 dark:text-slate-400">A collection of moments and places I've captured</p>
+        </div>
+
+        <!-- Photo Gallery Grid -->
+        <div id="photo-gallery" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <!-- Photos will be injected here -->
+        </div>
+    </main>
+
+    <!-- Photo Modal -->
+    <div id="photoModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden items-center justify-center p-4">
+        <div class="relative max-w-4xl max-h-[90vh] w-full">
+            <button id="closePhotoModal" class="absolute -top-12 right-0 text-white hover:text-gray-300 text-2xl font-bold z-10">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <img id="modalImage" class="max-w-full max-h-full object-contain mx-auto" alt="">
+            <div id="modalDescription" class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white p-4 text-center">
+                <!-- Description will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footerContainer"></div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

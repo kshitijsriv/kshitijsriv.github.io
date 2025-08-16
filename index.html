@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kshitij Srivastava - Data Engineer and PhD student at IIIT Delhi specializing in Electronics & Communication. Focus on public transit systems and scalable data pipelines.">
+    <meta name="keywords" content="Kshitij Srivastava, IIIT Delhi, Chartr, Data Engineering, Public Transit, GTFS, Python, Cloud Infrastructure">
+    <meta name="author" content="Kshitij Srivastava">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Kshitij Srivastava - Personal Website</title>
+
+    <!-- Pre-apply theme to avoid FOUC -->
+    <script>
+      (function() {
+        try {
+          const saved = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (saved === null && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Tailwind config for class-based dark mode -->
+    <script>
+      tailwind = { config: { darkMode: 'class' } };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Firebase (optional for live content; safe to leave if not configured) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/components.js"></script>
+</head>
+<body class="bg-slate-50 dark:bg-[#121212] text-slate-800 dark:text-slate-200 transition-colors duration-500">
+
+
+    <!-- Header Container -->
+    <div id="headerContainer"></div>
+
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+
+
+        <!-- About Me Section -->
+        <section id="about" class="min-h-[80vh] flex items-center">
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-3">
+                    <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Hi, I'm Kshitij Srivastava</h1>
+                    <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-6">
+                        I'm a Data Engineer and a PhD student at IIIT Delhi specializing in Electronics & Communication. My work involves designing scalable data pipelines and real-time data integration for public transit systems. As a founding engineer at Chartr and Tech Lead at the Centre for Sustainable Mobility, I focus on using GTFS, Python, and cloud infrastructure to enhance urban transit for millions of commuters.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="cv_kshitij_srivastava.pdf" target="_blank" class="bg-sky-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-sky-600 transition-colors">View CV</a>
+                        <a href="mailto:kshitij@ksriv.in" class="bg-slate-200 dark:bg-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">Contact Me</a>
+                    </div>
+                </div>
+                <div class="md:col-span-2 flex justify-center">
+                    <img src="https://placehold.co/400x400/e2e8f0/334155?text=K.S." alt="Kshitij Srivastava" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover shadow-lg">
+                </div>
+            </div>
+        </section>
+    </main>
+    
+
+
+    <!-- Footer Container -->
+    <div id="footerContainer"></div>
+
+
+    <script src="js/main.js"></script>
+</body>
+</html>
