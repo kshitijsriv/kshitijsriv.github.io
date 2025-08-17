@@ -53,22 +53,21 @@ function initializeComponents(activePage = '') {
     const headerContainer = document.getElementById('headerContainer');
     if (headerContainer) {
         headerContainer.innerHTML = generateHeader(activePage);
+        // Initialize mobile menu functionality AFTER header is inserted
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
     }
     
     // Insert footer
     const footerContainer = document.getElementById('footerContainer');
     if (footerContainer) {
         footerContainer.innerHTML = generateFooter();
-    }
-    
-    // Initialize mobile menu functionality
-    const mobileMenuButton = document.getElementById('mobileMenuButton');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
     }
 }
 
