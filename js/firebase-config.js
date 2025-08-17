@@ -17,5 +17,6 @@ window.FIREBASE_ENABLED = true;
 
 // Optional: Restrict admin access to specific emails
 window.ALLOWED_ADMINS = [
-  "kshitijsriv95@gmail.com"  // Replace with your actual email
+  "kshitijsriv95@gmail.com",
+  "kshitijs@iiitd.ac.in"
 ];
